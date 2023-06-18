@@ -1,0 +1,17 @@
+{
+  "OCR_PADRAO": "tesseract",
+  "GV_CREDENCIAL": "./config/keys.json",
+  "GV_CONTADOR": "./config/gv_contador.ini",
+  "TES_PATH": "C:/Program Files/Tesseract-OCR/tesseract.exe",
+  "TES_PREFIX": "C:/Program Files/Tesseract-OCR/tessdata",
+  "GS_URL_KEY": "1gOs4-T68lGPTQcNIpj4e3dxy1CEHkXUuytG0SczZhcI",
+  "GS_CREDENCIAL": "./config/gskeys.json,",
+  "TEMPO_CONGELA_FRAME": 4.0,
+  "RESIZE_FRAMES": 1.0,
+  "RESIZE_WIDTH": 400,
+  "CSV_SAIDA": "resultado.csv",
+  "VID_PADRAO": 0,
+  "SOM_NOVO_QRCODE": "./sounds/TADA.WAV",
+  "SOM_QRCODE_JA_DETECTADO": "./sounds/DING.WAV",
+  "NFE_BASE_URL": "http://nfce.sefaz.pe.gov.br/nfce-web/consultarNFCe"
+}
