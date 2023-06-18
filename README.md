@@ -1,0 +1,1 @@
+# qrcode_ocr_nfe_gs
