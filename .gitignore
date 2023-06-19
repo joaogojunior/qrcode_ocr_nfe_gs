@@ -4,6 +4,9 @@
 # chaves privadas do projeto
 config/*keys.json
 
+# contador do google vision
+config/gv_contador.ini
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

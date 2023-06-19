@@ -44,7 +44,7 @@ def le_tecla_e_chama_rotina(vs, csv, frame):
     elif key == 13:
         ocr_padrao = opcoes_utils.le_opcao("OCR_PADRAO")
         print("Enviando imagem para " + ocr_padrao)
-        ocr_func = getattr(ocr_utils, "ocr_utils.detect_" + ocr_padrao)
+        ocr_func = getattr(ocr_utils, "detect_text_" + ocr_padrao)
         ocr_func(frame)
     elif key == ord("s"):
         pass

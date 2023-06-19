@@ -64,22 +64,31 @@ def detect_text_gvision(frame):
         return texts
 
     arquivo_contador = opcoes_utils.le_opcao("GV_CONTADOR")
-    mes_atual = date.today().strftime("%m")
+    mes_atual = int(date.today().strftime("%m"))
     # tenta ler contador de execucoes
-
     contador, mes_contador = le_contador_mes(arquivo_contador, mes_atual)
+    # print(contador, mes_contador, mes_atual)
+    # print(type(contador), type(mes_contador), type(mes_atual))
 
     if contador < 1000 and mes_contador == mes_atual:
+        # print("chamou ocr")
+        # return None
         return call_ocr(contador, mes_atual)
-    elif mes_contador == mes_atual:
+    elif contador >= 1000 and mes_contador == mes_atual:
         # nao chama o ocr pra nao gerar custos e cobranca do google
         print("Excedeu cota de uso deste ocr... Por favor selecione outro como tesseract ou easy_ocr.")
         return None
-    else:
+    elif mes_contador != mes_atual:
+        # se mes_atual for diferente de mes_contador
         # reseta arquivo contador
+        # print("resetou e chamou o ocr")
         contador = 0
         # atualiza_contador(arquivo_contador, contador, mes_atual)
         return call_ocr(contador, mes_atual)
+        # return None
+    else:
+        print("estado invalido detectado no contador, apague o arquivo para regenerar o mesmo...")
+        return None
 
 
 def detect_text_tesseract(frame):
@@ -92,7 +101,7 @@ def detect_text_tesseract(frame):
     print(pytesseract.image_to_string(gray_frame))
 
 
-def detect_text_keras_test(frame):
+def detect_text_keras_ocr(frame):
     gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     # import matplotlib.pyplot as plt
 
@@ -126,7 +135,7 @@ def detect_text_keras_test(frame):
     #     keras_ocr.tools.drawAnnotations(image=image, predictions=predictions, ax=ax)
 
 
-def detect_text_easyocr(frame):
+def detect_text_easy_ocr(frame):
     gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     # print(gray_frame)
     # image_bytes = qrcode_utils.converte_frame_as_str(gray_frame)

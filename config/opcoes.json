@@ -1,5 +1,5 @@
 {
-  "OCR_PADRAO": "tesseract",
+  "OCR_PADRAO": "gvision",
   "GV_CREDENCIAL": "./config/keys.json",
   "GV_CONTADOR": "./config/gv_contador.ini",
   "TES_PATH": "C:/Program Files/Tesseract-OCR/tesseract.exe",

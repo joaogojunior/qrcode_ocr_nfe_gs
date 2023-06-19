@@ -42,7 +42,7 @@ def marca_barcode_no_frame(frame, barcode, encontrado, valido):
         rgb = (0, 255, 0)
         texto = "QRCODE ENCONTRADO"
     elif encontrado and not valido:
-        rgb = (0, 255, 0)
+        rgb = (0, 0, 255)
         texto = "QRCODE INVALIDO"
     else:
         rgb = (255, 0, 0)
