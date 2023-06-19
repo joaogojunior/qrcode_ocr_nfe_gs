@@ -37,10 +37,13 @@ def get_barcodedata(barcode):
     return barcode_data
 
 
-def marca_barcode_no_frame(frame, barcode, encontrado):
-    if encontrado:
+def marca_barcode_no_frame(frame, barcode, encontrado, valido):
+    if encontrado and valido:
         rgb = (0, 255, 0)
         texto = "QRCODE ENCONTRADO"
+    elif encontrado and not valido:
+        rgb = (0, 255, 0)
+        texto = "QRCODE INVALIDO"
     else:
         rgb = (255, 0, 0)
         texto = "QRCODE JA CAPTURADO"

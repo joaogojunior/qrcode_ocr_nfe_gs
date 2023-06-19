@@ -89,12 +89,14 @@ def loop_principal():
             # se o texto do qrcode não estiver em found, vai escrever
             # os dados no csv e atualizar a variavel found com qrcode encontrada
             novo_qrcode = barcode_data not in found
+            valid_qrcode = nfe_utils.valida_nfe_link(barcode_data)
             # marca qrcode encontrado no frame
-            qrcode_utils.marca_barcode_no_frame(frame, barcode, novo_qrcode)
+            qrcode_utils.marca_barcode_no_frame(frame, barcode, novo_qrcode, valid_qrcode)
             # salva frame com qrcodes marcados
             frame_com_qrcodes = frame
-            # checa se o qrcode detectado ja foi detectado antes
-            if novo_qrcode and nfe_utils.valida_nfe_link(barcode_data):
+            # checa se o qrcode ja foi detectado antes e é valido
+            if novo_qrcode and valid_qrcode:
+                # toca som sucesso e salva no csv
                 sound.toca_som(opcoes_utils.le_opcao("SOM_NOVO_QRCODE"))
                 json_out, json_dict = http_json.get_json_from_qrcode(barcode_data)
                 csv_utils.escreve_csv(csv, barcode_data, json_out)
@@ -102,13 +104,18 @@ def loop_principal():
                 # extrai nf_list
                 nf_dict = nfe_utils.extrai_nfe_data_from_json_dict_return_nf_dict(json_dict)
                 # print(nf_dict)
+                # e salva no google sheets
                 lista = nfe_utils.formata_campos_lista_de_celulas(nf_dict)
                 row = google_sheets_utils.next_available_row(sheet)
                 google_sheets_utils.write_sheet(sheet, "A"+row, lista)
 
                 # adicionar qrcode encontrado
                 found.add(barcode_data)
+            elif novo_qrcode and not valid_qrcode:
+                # toca som invalido
+                sound.toca_som(opcoes_utils.le_opcao("SOM_QRCODE_INVALIDO"))
             else:
+                # toca som ja detectado
                 sound.toca_som(opcoes_utils.le_opcao("SOM_QRCODE_JA_DETECTADO"))
 
         # atualiza a visualizacao do Frame a não ser que um qrcode tenha sido detectado a menos de quatro

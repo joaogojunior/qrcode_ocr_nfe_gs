@@ -13,5 +13,6 @@
   "VID_PADRAO": 0,
   "SOM_NOVO_QRCODE": "./sounds/TADA.WAV",
   "SOM_QRCODE_JA_DETECTADO": "./sounds/DING.WAV",
+  "SOM_QRCODE_INVALIDO": "./sounds/CHORD.WAV",
   "NFE_BASE_URL": "http://nfce.sefaz.pe.gov.br/nfce-web/consultarNFCe"
 }
